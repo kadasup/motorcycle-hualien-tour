@@ -116,7 +116,7 @@ const tourData = {
         {
             time: "16:30",
             location: "新城老街",
-            highlight: "【美食】 佳興冰果室 (檸檬汁北返)。",
+            highlight: "【美食】 佳興冰果室 (檸檬汁)。",
             guide: "老街路邊暫停，買完即走。",
             type: "food",
             distance: "15 km"
