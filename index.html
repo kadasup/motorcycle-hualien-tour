@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重機花蓮兩日遊 | 速度與自由的海岸征途</title>
+    <meta name="description" content="專為重機騎士設計的花蓮兩日遊行程，包含新手停車指引與內容美食亮點。">
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Noto+Sans+TC:wght@400;700;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <section class="hero">
+        <div id="weather-widget" class="weather-widget">
+            <div id="local-weather">正在取得您的位置天氣...</div>
+            <div id="hualien-weather">正在取得花蓮天氣...</div>
+        </div>
+        <img src="hero.png" alt="重機花蓮之旅" class="hero-img">
+        <div class="hero-content">
+            <h1 class="hero-title">兇弟鐵三角 速度與自由</h1>
+            <p class="hero-subtitle">花蓮重機兩日遊．菜鳥新手首航指南</p>
+            <a href="#tour" class="btn-primary">開始探索行程</a>
+        </div>
+    </section>
+
+    <section id="tour">
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="switchDay('D1')">Day 01</button>
+            <button class="tab-btn" onclick="switchDay('D2')">Day 02</button>
+        </div>
+
+        <div id="timeline-container" class="timeline">
+            <!-- 動態插入內容 -->
+        </div>
+    </section>
+
+    <div id="image-modal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img id="modal-img" class="modal-content">
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

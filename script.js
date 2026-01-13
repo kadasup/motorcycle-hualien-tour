@@ -1,0 +1,162 @@
+function renderTimeline(day) {
+    const container = document.getElementById('timeline-container');
+    container.innerHTML = ''; // 清空內容
+
+    const items = tourData[day];
+
+    // 計算總距離
+    let totalKm = 0;
+    items.forEach(item => {
+        if (item.distance && item.distance.includes('km')) {
+            totalKm += parseInt(item.distance);
+        }
+    });
+
+    // 更新總里程顯示 (如果不存在則建立)
+    let totalEl = document.getElementById('total-distance');
+    if (!totalEl) {
+        totalEl = document.createElement('div');
+        totalEl.id = 'total-distance';
+        document.querySelector('.tab-container').after(totalEl);
+    }
+    totalEl.innerHTML = `本日預計行駛總里程：<span>${totalKm} km</span>`;
+
+    items.forEach((item, index) => {
+        const itemEl = document.createElement('div');
+        itemEl.className = 'timeline-item';
+        itemEl.style.transitionDelay = `${index * 0.1}s`;
+
+        const typeMap = {
+            'ride': '騎乘',
+            'spot': '景點',
+            'food': '美食',
+            'stay': '住宿'
+        };
+
+        const imageIcon = item.image ? `<span class="photo-hint" data-img="${item.image}">📷</span>` : '';
+
+        itemEl.innerHTML = `
+            <div class="distance-tag">${item.distance ? `<span>↓</span> ${item.distance}` : ''}</div>
+            <div class="marker"></div>
+            <div class="time">${item.time}</div>
+            <div class="card">
+                <div class="location ${item.image ? 'clickable-photo' : ''}" data-img="${item.image || ''}">
+                    ${imageIcon}${item.location}
+                    <span class="tag tag-${item.type}">${typeMap[item.type]}</span>
+                </div>
+                <div class="highlight">${item.highlight}</div>
+                <div class="guide-box">
+                    <strong>停車與騎乘指引：</strong><br>
+                    ${item.guide}
+                </div>
+            </div>
+        `;
+
+        // 幫具備照片的元素加上點擊事件
+        if (item.image) {
+            const clickTarget = itemEl.querySelector('.clickable-photo');
+            clickTarget.addEventListener('click', () => openModal(item.image));
+        }
+
+        container.appendChild(itemEl);
+    });
+
+    // 重新啟動觀察器以捕捉新元素
+    observeItems();
+}
+
+function openModal(imgSrc) {
+    const modal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+
+    // 先清空 src 以免顯示上一張圖
+    modalImg.src = '';
+    modal.style.display = 'flex';
+
+    // 使用 setTimeout 確保 DOM 更新後再載入新圖，有助於解決部分瀏覽器的競爭問題
+    setTimeout(() => {
+        modalImg.src = imgSrc;
+        // 加入錯誤處理，若圖片無法載入則顯示預設圖
+        modalImg.onerror = function () {
+            this.src = 'https://placehold.co/800x600?text=Photo+Not+Available';
+            alert('無法載入此圖片，可能是因為網路來源限制。');
+        };
+    }, 10);
+}
+
+function closeModal() {
+    document.getElementById('image-modal').style.display = 'none';
+    document.getElementById('modal-img').src = '';
+}
+
+function switchDay(day) {
+    // 更新按鈕樣式
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.innerText.includes(day === 'D1' ? '01' : '02')) {
+            btn.classList.add('active');
+        }
+    });
+
+    renderTimeline(day);
+}
+
+function observeItems() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.timeline-item').forEach(item => {
+        observer.observe(item);
+    });
+}
+
+// 天氣 API 實作 (使用 Open-Meteo，不需要 API Key)
+async function fetchWeather(lat, lon, elementId, label) {
+    try {
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+        const data = await response.json();
+        const weather = data.current_weather;
+        const temp = Math.round(weather.temperature);
+
+        // 簡易天氣代碼解釋
+        const getDesc = (code) => {
+            if (code <= 3) return '晴朗';
+            if (code <= 67) return '細雨';
+            if (code <= 99) return '雷雨';
+            return '多雲';
+        };
+
+        const desc = getDesc(weather.weathercode);
+        document.getElementById(elementId).innerHTML = `
+            <span class="city">${label}</span> <span>${temp}°C</span> | <span>${desc}</span>
+        `;
+    } catch (error) {
+        document.getElementById(elementId).innerText = `${label}天氣暫時無法讀取`;
+    }
+}
+
+function initWeather() {
+    // 固定顯示 台北 與 花蓮 的天氣
+    fetchWeather(25.03, 121.56, 'local-weather', '台北'); // 台北
+    fetchWeather(23.97, 121.60, 'hualien-weather', '花蓮'); // 花蓮
+}
+
+// 初始化渲染
+document.addEventListener('DOMContentLoaded', () => {
+    renderTimeline('D1');
+    initWeather();
+
+    // 平滑捲動
+    document.querySelector('.btn-primary').addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        document.querySelector(targetId).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
