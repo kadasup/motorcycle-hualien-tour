@@ -1,4 +1,5 @@
 const tourData = {
+    date: "2026/1/24（六）- 2026/1/25（日）",
     D1: [
         {
             time: "08:00",
@@ -64,7 +65,7 @@ const tourData = {
             time: "19:30",
             location: "住宿：花蓮阿羅國際青年旅舍",
             highlight: "花蓮縣花蓮市富吉路58-3號、逛東大門夜市。",
-            guide: "位於火車站後站，停車與往返市區非常便利。提供專屬重機友善空間。",
+            guide: "往返市區非常便利。",
             type: "stay",
             distance: "3 km"
         }
