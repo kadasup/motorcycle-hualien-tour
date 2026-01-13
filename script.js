@@ -69,19 +69,17 @@ function openModal(imgSrc) {
     const modal = document.getElementById('image-modal');
     const modalImg = document.getElementById('modal-img');
 
-    // 先清空 src 以免顯示上一張圖
-    modalImg.src = '';
+    // 顯示燈箱
     modal.style.display = 'flex';
 
-    // 使用 setTimeout 確保 DOM 更新後再載入新圖，有助於解決部分瀏覽器的競爭問題
-    setTimeout(() => {
-        modalImg.src = imgSrc;
-        // 加入錯誤處理，若圖片無法載入則顯示預設圖
-        modalImg.onerror = function () {
-            this.src = 'https://placehold.co/800x600?text=Photo+Not+Available';
-            alert('無法載入此圖片，可能是因為網路來源限制。');
-        };
-    }, 10);
+    // 載入圖片
+    modalImg.src = imgSrc;
+
+    // 錯誤處理：如果圖片載入失敗，顯示預設圖片
+    modalImg.onerror = function () {
+        this.src = 'https://placehold.co/800x600?text=Photo+Not+Available';
+        this.onerror = null; // 防止無限迴圈
+    };
 }
 
 function closeModal() {
