@@ -69,17 +69,26 @@ function openModal(imgSrc) {
     const modal = document.getElementById('image-modal');
     const modalImg = document.getElementById('modal-img');
 
-    // 顯示燈箱
+    // 1. 先顯示燈箱背景，但不顯示圖片（或維持空白）
+    modalImg.style.opacity = '0';
     modal.style.display = 'flex';
 
-    // 載入圖片
-    modalImg.src = imgSrc;
+    // 2. 建立一個暫時的 Image 物件來預載入
+    const tempImg = new Image();
 
-    // 錯誤處理：如果圖片載入失敗，顯示預設圖片
-    modalImg.onerror = function () {
-        this.src = 'https://placehold.co/800x600?text=Photo+Not+Available';
-        this.onerror = null; // 防止無限迴圈
+    tempImg.onload = function () {
+        modalImg.src = imgSrc;
+        modalImg.style.opacity = '1';
     };
+
+    tempImg.onerror = function () {
+        // 如果載入失敗，直接換成佔位圖，不跳 alert
+        modalImg.src = 'https://placehold.co/800x600?text=Photo+Not+Available';
+        modalImg.style.opacity = '1';
+    };
+
+    // 觸發載入
+    tempImg.src = imgSrc;
 }
 
 function closeModal() {

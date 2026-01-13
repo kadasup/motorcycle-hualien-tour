@@ -345,9 +345,17 @@ body {
     object-fit: contain;
     border-radius: 12px;
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
-    border: 2px solid var(--glass-border);
-    background: rgba(255, 255, 255, 0.03); /* 輕微背景色，載入中不留白 */
-    transition: transform 0.3s ease;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.03);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    /* 預設不透明，由 JS 控制 */
+}
+
+/* 隱藏圖片損壞時瀏覽器預設的圖示與邊框 */
+.modal-content[src=""],
+.modal-content:not([src]) {
+    visibility: hidden;
 }
 
 .modal-close {
