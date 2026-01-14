@@ -568,15 +568,17 @@ body {
 }
 
 .rider-name {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
+    /* 縮小原先的 1.6rem */
     font-weight: 800;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     color: #fff;
 }
 
 .rider-bio {
     color: var(--text-dim);
-    font-size: 1rem;
+    font-size: 0.9rem;
+    /* 縮小原先的 1rem */
     line-height: 1.6;
 }
 
