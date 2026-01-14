@@ -461,7 +461,8 @@ body {
     }
 
     .section-title {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
+        /* 從 1.8rem 進一步縮小 */
         margin-bottom: 30px;
     }
 
@@ -483,9 +484,10 @@ body {
 
 .section-title {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 1.8rem;
+    /* 從 2.5rem 縮小 */
     font-weight: 800;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     color: var(--primary);
     text-shadow: 0 0 20px var(--primary-glow);
 }
