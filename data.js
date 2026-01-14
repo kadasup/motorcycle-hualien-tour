@@ -24,6 +24,7 @@ const tourData = {
             highlight: "【美食】 阿宗芋冰城、頂埔阿嬤蔥油餅。",
             guide: "門口路寬，適合新手暫停。",
             type: "food",
+            image: "C:/Users/Cyrus-MSI/.gemini/antigravity/brain/2ecced43-d47a-4cc1-a699-f5d9f446de20/uploaded_image_4_1768405227003.jpg",
             distance: "8 km"
         },
         {
@@ -32,6 +33,7 @@ const tourData = {
             highlight: "【美食】 阿英小吃（魚雜小吃）",
             guide: "港區斜坡多，停車注意側柱穩固。",
             type: "food",
+            image: "C:/Users/Cyrus-MSI/.gemini/antigravity/brain/2ecced43-d47a-4cc1-a699-f5d9f446de20/uploaded_image_3_1768405227003.jpg",
             distance: "35 km"
         },
         {
@@ -58,7 +60,7 @@ const tourData = {
             highlight: "【美食】 玉里橋頭臭豆腐 (花蓮店)。",
             guide: "公園停車場巨大，免找車位。",
             type: "food",
-            image: "nanbin.png",
+            image: "C:/Users/Cyrus-MSI/.gemini/antigravity/brain/2ecced43-d47a-4cc1-a699-f5d9f446de20/uploaded_image_1768405860386.jpg",
             distance: "25 km"
         },
         {
@@ -67,6 +69,7 @@ const tourData = {
             highlight: "花蓮縣花蓮市富吉路58-3號、逛東大門夜市。",
             guide: "往返市區非常便利。",
             type: "stay",
+            image: "C:/Users/Cyrus-MSI/.gemini/antigravity/brain/2ecced43-d47a-4cc1-a699-f5d9f446de20/uploaded_image_1_1768405227003.jpg",
             distance: "3 km"
         }
     ],
@@ -94,6 +97,7 @@ const tourData = {
             highlight: "【美食】 鳳林韭菜臭豆腐。",
             guide: "鄉間路寬，路邊停車壓力極小。",
             type: "food",
+            image: "C:/Users/Cyrus-MSI/.gemini/antigravity/brain/2ecced43-d47a-4cc1-a699-f5d9f446de20/uploaded_image_0_1768405227003.jpg",
             distance: "2 km"
         },
         {
@@ -120,6 +124,7 @@ const tourData = {
             highlight: "【美食】 佳興冰果室 (檸檬汁)。",
             guide: "老街路邊暫停，買完即走。",
             type: "food",
+            image: "C:/Users/Cyrus-MSI/.gemini/antigravity/brain/2ecced43-d47a-4cc1-a699-f5d9f446de20/uploaded_image_2_1768405227003.jpg",
             distance: "15 km"
         },
         {
@@ -130,5 +135,26 @@ const tourData = {
             type: "ride",
             distance: "150 km"
         }
+    ],
+    riders: [
+        {
+            name: "羅總工程師",
+            bio: "專業領隊，熱愛重機文化。此次旅行的發起者，負責帶領兄弟們征服花蓮的海岸線。",
+            image: "rider1.jpg",
+            tag: "領隊"
+        },
+        {
+            name: "虛位待補",
+            bio: "這是一個神祕的騎士位子，或許就是你？",
+            image: "",
+            tag: "隊員"
+        },
+        {
+            name: "虛位待補",
+            bio: "準備中... 敬請期待第三位大將加入。",
+            image: "",
+            tag: "隊員"
+        }
     ]
 };
+

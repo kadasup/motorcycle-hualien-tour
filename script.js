@@ -61,6 +61,18 @@ function renderTimeline(day) {
         container.appendChild(itemEl);
     });
 
+    // 如果是第一天，最下方增加「查看第二天」的按鈕
+    if (day === 'D1') {
+        const nextDayBtn = document.createElement('div');
+        nextDayBtn.className = 'next-day-cta';
+        nextDayBtn.innerHTML = `
+            <button onclick="switchDay('D2'); setTimeout(() => { window.scrollTo({top: document.getElementById('timeline-container').offsetTop - 120, behavior: 'smooth'}); }, 50);">
+                🚀 查看第二天行程
+            </button>
+        `;
+        container.appendChild(nextDayBtn);
+    }
+
     // 重新啟動觀察器以捕捉新元素
     observeItems();
 }
@@ -166,4 +178,35 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth'
         });
     });
+
+    renderRiders();
 });
+
+function renderRiders() {
+    const container = document.getElementById('riders-grid');
+    if (!container) return;
+
+    const riders = tourData.riders;
+    container.innerHTML = '';
+
+    riders.forEach(rider => {
+        const card = document.createElement('div');
+        card.className = 'rider-card';
+
+        const imgHtml = rider.image
+            ? `<img src="${rider.image}" alt="${rider.name}" class="rider-img">`
+            : `<div class="rider-placeholder"></div>`;
+
+        card.innerHTML = `
+            <div class="rider-img-container">
+                ${imgHtml}
+            </div>
+            <div class="rider-info">
+                <span class="rider-tag">${rider.tag}</span>
+                <h3 class="rider-name">${rider.name}</h3>
+                <p class="rider-bio">${rider.bio}</p>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}

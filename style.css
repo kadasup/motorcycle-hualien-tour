@@ -459,4 +459,157 @@ body {
     .card {
         padding: 15px;
     }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+
+    .rider-img-container {
+        height: 280px;
+    }
+}
+
+/* Riders Section */
+.riders-section {
+    padding: 80px 5%;
+    background: linear-gradient(to bottom, var(--bg-dark), #111);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 50px;
+    color: var(--primary);
+    text-shadow: 0 0 20px var(--primary-glow);
+}
+
+.riders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.rider-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.rider-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.rider-img-container {
+    width: 100%;
+    height: 380px;
+    background: #222;
+    overflow: hidden;
+    position: relative;
+}
+
+.rider-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.rider-card:hover .rider-img {
+    transform: scale(1.1);
+}
+
+.rider-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #111, #222);
+}
+
+.rider-placeholder::after {
+    content: '?';
+    font-size: 5rem;
+    color: var(--glass-border);
+    font-weight: 900;
+}
+
+.rider-info {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.rider-tag {
+    display: inline-block;
+    align-self: flex-start;
+    background: var(--primary);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.rider-name {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: #fff;
+}
+
+.rider-bio {
+    color: var(--text-dim);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Next Day CTA Button */
+.next-day-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    padding-bottom: 40px;
+}
+
+.next-day-cta button {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--primary), #ff7e5f);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 25px var(--primary-glow);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.next-day-cta button:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px var(--primary-glow);
+    filter: brightness(1.1);
+}
+
+.next-day-cta button:active {
+    transform: translateY(-2px);
 }
