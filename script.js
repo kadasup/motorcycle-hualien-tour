@@ -12,12 +12,17 @@ function renderTimeline(day) {
         }
     });
 
-    // 更新總里程顯示 (如果不存在則建立)
+    // 更新總里程顯示 (確保插在 tab-container 之後)
     let totalEl = document.getElementById('total-distance');
     if (!totalEl) {
         totalEl = document.createElement('div');
         totalEl.id = 'total-distance';
-        document.querySelector('.tab-container').after(totalEl);
+        const tabContainer = document.querySelector('.tab-container');
+        if (tabContainer) {
+            tabContainer.after(totalEl);
+        } else {
+            container.before(totalEl);
+        }
     }
     totalEl.innerHTML = `本日預計行駛總里程：<span>${totalKm} km</span>`;
 
@@ -81,22 +86,24 @@ function openModal(imgSrc) {
     const modal = document.getElementById('image-modal');
     const modalImg = document.getElementById('modal-img');
 
-    // 1. 先顯示燈箱背景，但不顯示圖片（或維持空白）
-    modalImg.style.opacity = '0';
+    // 1. 初始化狀態：顯示 Loader，隱藏圖片效果
+    modal.classList.remove('image-loaded');
+    modal.classList.add('loading');
     modal.style.display = 'flex';
 
-    // 2. 建立一個暫時的 Image 物件來預載入
+    // 2. 建立預載入物件
     const tempImg = new Image();
 
     tempImg.onload = function () {
         modalImg.src = imgSrc;
-        modalImg.style.opacity = '1';
+        modal.classList.remove('loading');
+        modal.classList.add('image-loaded');
     };
 
     tempImg.onerror = function () {
-        // 如果載入失敗，直接換成佔位圖，不跳 alert
         modalImg.src = 'https://placehold.co/800x600?text=Photo+Not+Available';
-        modalImg.style.opacity = '1';
+        modal.classList.remove('loading');
+        modal.classList.add('image-loaded');
     };
 
     // 觸發載入
@@ -104,8 +111,12 @@ function openModal(imgSrc) {
 }
 
 function closeModal() {
-    document.getElementById('image-modal').style.display = 'none';
-    document.getElementById('modal-img').src = '';
+    const modal = document.getElementById('image-modal');
+    modal.classList.remove('image-loaded');
+    setTimeout(() => {
+        modal.style.display = 'none';
+        document.getElementById('modal-img').src = '';
+    }, 300); // 等待縮小動畫完成
 }
 
 function switchDay(day) {
@@ -165,19 +176,57 @@ function initWeather() {
     fetchWeather(23.97, 121.60, 'hualien-weather', '花蓮'); // 花蓮
 }
 
+// 預載入所有行程與成員照片
+function preloadAllImages() {
+    const imagesToPreload = [];
+
+    // 收集所有行程圖片
+    if (tourData.D1) tourData.D1.forEach(item => item.image && imagesToPreload.push(item.image));
+    if (tourData.D2) tourData.D2.forEach(item => item.image && imagesToPreload.push(item.image));
+
+    // 收集成員圖片
+    if (tourData.riders) tourData.riders.forEach(rider => rider.image && imagesToPreload.push(rider.image));
+
+    // 收集 Hero 圖
+    imagesToPreload.push('hero.png');
+
+    // 去重並執行預載
+    const uniqueImages = [...new Set(imagesToPreload)];
+    console.log(`正在預載 ${uniqueImages.length} 張圖片...`);
+
+    uniqueImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
 // 初始化渲染
 document.addEventListener('DOMContentLoaded', () => {
+    // 優先開始預載圖片
+    preloadAllImages();
+
     renderTimeline('D1');
     initWeather();
 
     // 平滑捲動
-    document.querySelector('.btn-primary').addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        document.querySelector(targetId).scrollIntoView({
-            behavior: 'smooth'
+    const exploreBtn = document.querySelector('.btn-primary');
+    if (exploreBtn) {
+        exploreBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
         });
-    });
+    }
 
     renderRiders();
 });

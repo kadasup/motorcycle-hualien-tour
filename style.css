@@ -351,6 +351,28 @@ body {
     align-items: center;
 }
 
+/* Spinner 加載動畫 */
+.modal-loader {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--glass-border);
+    border-top: 3px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: none;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .modal-content {
     max-width: 90%;
     max-height: 85vh;
@@ -363,15 +385,18 @@ body {
     box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
     border: 1px solid var(--glass-border);
     background: rgba(255, 255, 255, 0.03);
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
-    /* 預設不透明，由 JS 控制 */
+    transform: scale(0.9);
 }
 
-/* 隱藏圖片損壞時瀏覽器預設的圖示與邊框 */
-.modal-content[src=""],
-.modal-content:not([src]) {
-    visibility: hidden;
+.modal.image-loaded .modal-content {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.modal.loading .modal-loader {
+    display: block;
 }
 
 .modal-close {
@@ -451,6 +476,11 @@ body {
         letter-spacing: 1px;
     }
 
+    .riders-section {
+        padding: 40px 5%;
+        /* 手機版大幅減少留白 */
+    }
+
     .btn-primary {
         font-size: 1rem;
         padding: 10px 25px;
@@ -462,18 +492,24 @@ body {
 
     .section-title {
         font-size: 1.5rem;
-        /* 從 1.8rem 進一步縮小 */
-        margin-bottom: 30px;
+        margin-bottom: 25px;
+        /* 手機版標題下方也減少些許留白 */
     }
 
     .rider-img-container {
         height: 280px;
     }
+
+    #tour {
+        padding: 50px 5%;
+        /* 行程區域手機版也減少上方間距 */
+    }
 }
 
 /* Riders Section */
 .riders-section {
-    padding: 80px 5%;
+    padding: 60px 5%;
+    /* 電腦版由 80px 縮減為 60px */
     background: linear-gradient(to bottom, var(--bg-dark), #111);
 }
 
