@@ -21,7 +21,7 @@ const tourData = {
         {
             time: "10:30",
             location: "頭城老街",
-            highlight: "【美食】 阿宗芋冰城、頂埔阿嬤蔥油餅。",
+            highlight: "【美食】 阿宗芋冰城、頭城木瓜王、頂埔阿嬤蔥油餅。",
             guide: "門口路寬，適合新手暫停。",
             type: "food",
             image: "toucheng.jpg",
@@ -146,15 +146,14 @@ const tourData = {
         {
             name: "黃經理",
             bio: "【水蜜桃大車隊創隊元老】全能選手，跑步、騎車樣樣會，樣樣來，參加過台灣不少體育活動（包含世壯運）及國外馬拉松賽事。",
-            image: "",
+            image: "rider2.jpg",
             tag: "隊員1號"
         },
         {
             name: "林菜鳥",
             bio: "20年前，台灣正風行自行車時創立【水蜜桃大車隊】，後來年紀增長懶的自己踩，改換跑道跟一般的中年大叔興趣一樣，開車、騎重機",
-            image: "",
+            image: "rider3.jpg",
             tag: "隊員2號"
         }
     ]
 };
-
