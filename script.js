@@ -49,6 +49,10 @@ function renderTimeline(day) {
                     <strong>停車與騎乘指引：</strong><br>
                     ${item.guide}
                 </div>
+                <div class="card-actions">
+                    ${item.map ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.map)}" target="_blank" class="action-link map-link">📍 導航</a>` : ''}
+                    <button class="action-link cal-link" onclick="addToCalendar('${item.location}', '${day}', '${item.time}', '${item.map || ''}')">📅 加入日曆</button>
+                </div>
             </div>
         `;
 
@@ -120,6 +124,23 @@ function switchDay(day) {
     renderTimeline(day);
 }
 
+function addToCalendar(title, day, time, location) {
+    const year = 2026;
+    const month = 1;
+    const date = day === 'D1' ? 24 : 25;
+
+    // 處理時間格式 (假設皆為 HH:mm 格式)
+    const [hours, minutes] = time.split(':');
+    const start = new Date(year, month - 1, date, parseInt(hours), parseInt(minutes));
+    const end = new Date(start.getTime() + 60 * 60 * 1000); // 預設一小時
+
+    const formatTime = (d) => d.toISOString().replace(/-|:|\.\d\d\d/g, "");
+
+    const googleCalUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${formatTime(start)}/${formatTime(end)}&details=${encodeURIComponent('兇弟鐵三角花蓮重機遊')}&location=${encodeURIComponent(location)}&sf=true&output=xml`;
+
+    window.open(googleCalUrl, '_blank');
+}
+
 function observeItems() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -180,7 +201,89 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     renderRiders();
+    initScrollEffects();
 });
+
+function initScrollEffects() {
+    const progressBar = document.getElementById('progress-bar');
+    const scrollTopBtn = document.getElementById('scroll-top-btn');
+
+    window.addEventListener('scroll', () => {
+        // 進度條
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        if (progressBar) progressBar.style.width = scrolled + "%";
+
+        // 回到頂端按鈕
+        if (scrollTopBtn) {
+            if (winScroll > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        }
+    });
+
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // 裝備檢核按鈕
+    const checkBtn = document.getElementById('check-list-btn');
+    if (checkBtn) {
+        checkBtn.classList.add('visible');
+        checkBtn.addEventListener('click', openChecklist);
+    }
+}
+
+const defaultChecklist = [
+    "安全帽 (全罩或 3/4 尤佳)",
+    "防摔手套 & 防摔衣",
+    "雨衣 (兩件式尤佳)",
+    "行車紀錄器 (確認電量與記憶卡)",
+    "備用鑰匙 (隨身攜帶)",
+    "輪胎胎壓 & 鍊條檢查",
+    "行動電源 & 充電線",
+    "健保卡 & 駕駛執照"
+];
+
+function openChecklist() {
+    const modal = document.getElementById('checklist-modal');
+    const container = document.getElementById('checklist-items');
+    container.innerHTML = '';
+
+    const savedStatus = JSON.parse(localStorage.getItem('tourChecklist') || '{}');
+
+    defaultChecklist.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = `checklist-item ${savedStatus[index] ? 'checked' : ''}`;
+        div.innerHTML = `
+            <input type="checkbox" id="item-${index}" ${savedStatus[index] ? 'checked' : ''}>
+            <span for="item-${index}">${item}</span>
+        `;
+        div.addEventListener('click', (e) => {
+            const checkbox = div.querySelector('input');
+            if (e.target !== checkbox) checkbox.checked = !checkbox.checked;
+
+            div.classList.toggle('checked', checkbox.checked);
+
+            // 儲存狀態
+            const currentStatus = JSON.parse(localStorage.getItem('tourChecklist') || '{}');
+            currentStatus[index] = checkbox.checked;
+            localStorage.setItem('tourChecklist', JSON.stringify(currentStatus));
+        });
+        container.appendChild(div);
+    });
+
+    modal.style.display = 'flex';
+}
+
+function closeChecklist() {
+    document.getElementById('checklist-modal').style.display = 'none';
+}
 
 function renderRiders() {
     const container = document.getElementById('riders-grid');

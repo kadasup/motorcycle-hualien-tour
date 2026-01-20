@@ -7,7 +7,8 @@ const tourData = {
             highlight: "經台2線濱海公路往頭城。",
             guide: "海風較大，保持穩定時速。",
             type: "ride",
-            distance: "起點"
+            distance: "起點",
+            map: "台北市"
         },
         {
             time: "09:30",
@@ -16,7 +17,8 @@ const tourData = {
             guide: "停車場寬廣平整，非常好停。",
             type: "spot",
             image: "beiguan.png",
-            distance: "50 km"
+            distance: "50 km",
+            map: "北關海潮公園"
         },
         {
             time: "10:30",
@@ -25,7 +27,8 @@ const tourData = {
             guide: "門口路寬，適合新手暫停。",
             type: "food",
             image: "toucheng.jpg",
-            distance: "8 km"
+            distance: "8 km",
+            map: "頭城老街"
         },
         {
             time: "12:00",
@@ -34,7 +37,8 @@ const tourData = {
             guide: "港區斜坡多，停車注意側柱穩固。",
             type: "food",
             image: "suao.jpg",
-            distance: "35 km"
+            distance: "35 km",
+            map: "南方澳漁港"
         },
         {
             time: "14:30",
@@ -43,7 +47,8 @@ const tourData = {
             guide: "柏油路面極佳，車友集結地。",
             type: "spot",
             image: "heping_daka.png",
-            distance: "30 km"
+            distance: "30 km",
+            map: "台泥DAKA園區"
         },
         {
             time: "16:00",
@@ -52,7 +57,8 @@ const tourData = {
             guide: "有重機專屬/大車位。",
             type: "spot",
             image: "qingshui.png",
-            distance: "20 km"
+            distance: "20 km",
+            map: "清水斷崖"
         },
         {
             time: "17:30",
@@ -61,7 +67,8 @@ const tourData = {
             guide: "公園停車場巨大，免找車位。",
             type: "food",
             image: "nanbin.jpg",
-            distance: "25 km"
+            distance: "25 km",
+            map: "南濱公園"
         },
         {
             time: "19:30",
@@ -70,7 +77,8 @@ const tourData = {
             guide: "往返市區非常便利。",
             type: "stay",
             image: "hostel.jpg",
-            distance: "3 km"
+            distance: "3 km",
+            map: "花蓮阿羅國際青年旅舍"
         }
     ],
     D2: [
@@ -80,7 +88,8 @@ const tourData = {
             highlight: "【美食】終極蛋餅、焗烤南瓜捲",
             guide: "花蓮縣政府斜對面。行政區路段路邊皆是白線且路幅極大，完全沒有停車壓力。",
             type: "food",
-            distance: "起點"
+            distance: "起點",
+            map: "府前食坊"
         },
         {
             time: "10:30",
@@ -89,7 +98,8 @@ const tourData = {
             guide: "道路筆直，適合新手感受動力。",
             type: "ride",
             image: "fenglin.png",
-            distance: "30 km"
+            distance: "30 km",
+            map: "鳳林鎮"
         },
         {
             time: "11:30",
@@ -98,7 +108,8 @@ const tourData = {
             guide: "鄉間路寬，路邊停車壓力極小。",
             type: "food",
             image: "fenglin_food.jpg",
-            distance: "2 km"
+            distance: "2 km",
+            map: "鳳林韭菜臭豆腐"
         },
         {
             time: "13:30",
@@ -107,7 +118,8 @@ const tourData = {
             guide: "停車空間極大，適合練習取景。",
             type: "spot",
             image: "starbucks.png",
-            distance: "25 km"
+            distance: "25 km",
+            map: "星巴克 (洄瀾門市)"
         },
         {
             time: "15:00",
@@ -116,7 +128,8 @@ const tourData = {
             guide: "停車點在奇萊鼻燈塔旁空地。",
             type: "spot",
             image: "si8.png",
-            distance: "12 km"
+            distance: "12 km",
+            map: "四八高地"
         },
         {
             time: "16:30",
@@ -125,7 +138,8 @@ const tourData = {
             guide: "老街路邊暫停，買完即走。",
             type: "food",
             image: "xincheng.jpg",
-            distance: "15 km"
+            distance: "15 km",
+            map: "新城老街"
         },
         {
             time: "17:30",

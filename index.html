@@ -13,6 +13,8 @@
 </head>
 
 <body>
+    <div class="scroll-progress" id="progress-bar"></div>
+
 
     <section class="hero">
         <div id="weather-widget" class="weather-widget">
@@ -51,6 +53,23 @@
     <div id="image-modal" class="modal" onclick="closeModal()">
         <span class="modal-close">&times;</span>
         <img id="modal-img" class="modal-content">
+    </div>
+
+    <div id="checklist-modal" class="modal">
+        <div class="modal-card">
+            <span class="modal-close" onclick="closeChecklist()">&times;</span>
+            <h2 style="margin-bottom: 20px; color: var(--primary);">🏍️ 騎乘裝備檢核表</h2>
+            <div id="checklist-items">
+                <!-- 由 JS 動態生成 -->
+            </div>
+            <button class="btn-primary" style="margin-top: 20px; width: 100%;"
+                onclick="closeChecklist()">我準備好了！</button>
+        </div>
+    </div>
+
+    <div class="fab-container">
+        <button class="fab" id="scroll-top-btn" title="回到頂端">↑</button>
+        <button class="fab" id="check-list-btn" title="裝備檢核" style="background: #2ecc71;">✓</button>
     </div>
 
     <script src="data.js"></script>
