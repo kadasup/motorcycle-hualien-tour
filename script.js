@@ -56,7 +56,6 @@ function renderTimeline(day) {
                 </div>
                 <div class="card-actions">
                     ${item.map ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.map)}" target="_blank" class="action-link map-link">📍 導航</a>` : ''}
-                    <button class="action-link cal-link" onclick="addToCalendar('${item.location}', '${day}', '${item.time}', '${item.map || ''}')">📅 加入日曆</button>
                 </div>
             </div>
         `;
@@ -135,22 +134,6 @@ function switchDay(day) {
     renderTimeline(day);
 }
 
-function addToCalendar(title, day, time, location) {
-    const year = 2026;
-    const month = 1;
-    const date = day === 'D1' ? 24 : 25;
-
-    // 處理時間格式 (假設皆為 HH:mm 格式)
-    const [hours, minutes] = time.split(':');
-    const start = new Date(year, month - 1, date, parseInt(hours), parseInt(minutes));
-    const end = new Date(start.getTime() + 60 * 60 * 1000); // 預設一小時
-
-    const formatTime = (d) => d.toISOString().replace(/-|:|\.\d\d\d/g, "");
-
-    const googleCalUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${formatTime(start)}/${formatTime(end)}&details=${encodeURIComponent('兇弟鐵三角花蓮重機遊')}&location=${encodeURIComponent(location)}&sf=true&output=xml`;
-
-    window.open(googleCalUrl, '_blank');
-}
 
 function observeItems() {
     const observer = new IntersectionObserver((entries) => {

@@ -429,9 +429,7 @@ body {
     color: var(--primary);
 }
 
-.cal-link {
-    color: #3498db;
-}
+
 
 /* Lightbox Modal */
 .modal {
