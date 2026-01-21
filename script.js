@@ -149,7 +149,7 @@ function observeItems() {
     });
 }
 
-// 天氣 API 實作 (使用 Open-Meteo，不需要 API Key)
+// 天氣 API 實作 (使用 Open-Meteo，支援圖示)
 async function fetchWeather(lat, lon, elementId, label) {
     try {
         const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
@@ -157,20 +157,27 @@ async function fetchWeather(lat, lon, elementId, label) {
         const weather = data.current_weather;
         const temp = Math.round(weather.temperature);
 
-        // 簡易天氣代碼解釋
-        const getDesc = (code) => {
-            if (code <= 3) return '晴朗';
-            if (code <= 67) return '細雨';
-            if (code <= 99) return '雷雨';
-            return '多雲';
+        // 天氣代碼圖示
+        const getWeatherUI = (code) => {
+            if (code <= 1) return { desc: '晴朗', icon: '☀️' };
+            if (code <= 3) return { desc: '多雲', icon: '⛅' };
+            if (code <= 48) return { desc: '霧', icon: '🌫️' };
+            if (code <= 67) return { desc: '細雨', icon: '🌦️' };
+            if (code <= 82) return { desc: '陣雨', icon: '🌧️' };
+            if (code <= 99) return { desc: '雷雨', icon: '⛈️' };
+            return { desc: '未知', icon: '🌡️' };
         };
 
-        const desc = getDesc(weather.weathercode);
+        const { desc, icon } = getWeatherUI(weather.weathercode);
         document.getElementById(elementId).innerHTML = `
-            <span class="city">${label}</span> <span>${temp}°C</span> | <span>${desc}</span>
+            <div class="weather-item">
+                <span class="weather-icon">${icon}</span>
+                <span class="city">${label}</span>
+                <span>${temp}°C | ${desc}</span>
+            </div>
         `;
     } catch (error) {
-        document.getElementById(elementId).innerText = `${label}天氣暫時無法讀取`;
+        document.getElementById(elementId).innerText = `${label}天氣讀取失敗`;
     }
 }
 

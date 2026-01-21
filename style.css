@@ -4,11 +4,12 @@
     --primary-glow: rgba(255, 69, 0, 0.4);
     --bg-dark: #0a0a0a;
     --bg-card: #151515;
-    --card-bg: rgba(30, 30, 30, 0.7);
+    --card-bg: rgba(25, 25, 25, 0.85);
+    /* 提升卡片不透明度 */
     --text-main: #f0f0f0;
     --text-dim: #b0b0b0;
-    --glass: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
     --accent-glow: 0 0 20px rgba(255, 69, 0, 0.15);
 }
 
@@ -110,18 +111,28 @@ body {
     top: 20px;
     right: 20px;
     z-index: 1001;
-    /* 確保在 Lightbox 之上或其他內容上 */
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    background: var(--glass);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    padding: 15px 20px;
-    border-radius: 15px;
-    font-size: 0.9rem;
+    gap: 12px;
+    padding: 18px 25px;
+    border-radius: 20px;
+    font-size: 0.95rem;
     color: white;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.weather-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 12px;
+}
+
+.weather-icon {
+    font-size: 1.2rem;
 }
 
 .weather-widget div {
@@ -356,12 +367,13 @@ body {
 }
 
 .location {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    letter-spacing: 0.5px;
 }
 
 .location.clickable-photo {
@@ -551,30 +563,34 @@ body {
 }
 
 .tag {
-    font-size: 0.7rem;
-    padding: 4px 10px;
-    border-radius: 4px;
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    border-radius: 6px;
     text-transform: uppercase;
     font-weight: 800;
     margin-left: auto;
     color: #ffffff;
-    /* 標籤字體改為白色 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.tag-food {
-    background: #e67e22;
+.tag::before {
+    margin-right: 5px;
 }
 
-.tag-spot {
-    background: #2ecc71;
+.tag-food::before {
+    content: "🍜";
 }
 
-.tag-ride {
-    background: #3498db;
+.tag-spot::before {
+    content: "📸";
 }
 
-.tag-stay {
-    background: #9b59b6;
+.tag-ride::before {
+    content: "🏍️";
+}
+
+.tag-stay::before {
+    content: "🛌";
 }
 
 @media (max-width: 768px) {
