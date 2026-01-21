@@ -2,26 +2,35 @@ const tourData = {
     date: "2026/1/24（六）- 2026/1/25（日）",
     D1: [
         {
-            time: "08:00",
-            location: "台北出發",
-            highlight: "經台2線濱海公路往頭城。",
-            guide: "海風較大，保持穩定時速。",
+            time: "08:30",
+            location: "台灣中油北投直營店",
+            highlight: "【集合點】 檢查車況、加油、領隊宣達安全事項。",
+            guide: "請準時集合，裝備穿戴整齊。",
             type: "ride",
             distance: "起點",
-            map: "台北市"
+            map: "台灣中油北投直營店"
         },
         {
-            time: "09:30",
+            time: "09:00",
+            location: "劉家肉粽",
+            highlight: "【美食】 馳名石門肉粽，北海岸必吃補給站。",
+            guide: "店口方便臨停，買了就走或現場快速用餐。",
+            type: "food",
+            distance: "28 km",
+            map: "劉家肉粽"
+        },
+        {
+            time: "11:00",
             location: "北關海潮公園",
             highlight: "【景點】 蘭陽八景之一，看龜山島與火車。",
             guide: "停車場寬廣平整，非常好停。",
             type: "spot",
             image: "beiguan.png",
-            distance: "50 km",
+            distance: "65 km",
             map: "北關海潮公園"
         },
         {
-            time: "10:30",
+            time: "12:00",
             location: "頭城老街",
             highlight: "【美食】 阿宗芋冰城、頭城木瓜王、頂埔阿嬤蔥油餅。",
             guide: "門口路寬，適合新手暫停。",
@@ -31,7 +40,7 @@ const tourData = {
             map: "頭城老街"
         },
         {
-            time: "12:00",
+            time: "13:30",
             location: "蘇澳/南方澳",
             highlight: "【美食】 阿英小吃（魚雜小吃）",
             guide: "港區斜坡多，停車注意側柱穩固。",
@@ -41,7 +50,7 @@ const tourData = {
             map: "南方澳漁港"
         },
         {
-            time: "14:30",
+            time: "16:00",
             location: "和平 DAKA",
             highlight: "【景點】 蘇花改中繼站，最後油料補給。",
             guide: "柏油路面極佳，車友集結地。",
@@ -51,7 +60,7 @@ const tourData = {
             map: "台泥DAKA園區"
         },
         {
-            time: "16:00",
+            time: "17:30",
             location: "清水斷崖",
             highlight: "【景點】 匯德步道，拍下重機首航美照。",
             guide: "有重機專屬/大車位。",
@@ -61,7 +70,7 @@ const tourData = {
             map: "清水斷崖"
         },
         {
-            time: "17:30",
+            time: "19:00",
             location: "南濱公園",
             highlight: "【美食】 玉里橋頭臭豆腐 (花蓮店)。",
             guide: "公園停車場巨大，免找車位。",
@@ -71,7 +80,7 @@ const tourData = {
             map: "南濱公園"
         },
         {
-            time: "19:30",
+            time: "21:00",
             location: "住宿：花蓮阿羅國際青年旅舍",
             highlight: "花蓮縣花蓮市富吉路58-3號、逛東大門夜市。",
             guide: "往返市區非常便利。",
