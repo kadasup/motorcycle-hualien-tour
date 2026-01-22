@@ -8,7 +8,7 @@ const tourData = {
             guide: "請準時集合，裝備穿戴整齊。",
             type: "ride",
             distance: "起點",
-            map: "台灣中油北投直營店"
+            map: "https://www.google.com/maps/place/%E5%8F%B0%E7%81%A3%E4%B8%AD%E6%B2%B9+%E5%8C%97%E6%8A%95%E7%9B%B4%E7%87%9F%E7%AB%99/@25.1193242,121.5022006,17z/"
         },
         {
             time: "09:00",
@@ -17,7 +17,7 @@ const tourData = {
             guide: "店口方便臨停，買了就走或現場快速用餐。",
             type: "food",
             distance: "28 km",
-            map: "劉家肉粽"
+            map: "https://www.google.com/maps/place/%E5%8A%89%E5%AE%B6%E8%82%89%E7%B2%BD%E5%AF%8C%E5%9F%BA%E5%BA%97/@25.2873502,121.531404,17z/"
         },
         {
             time: "11:00",
@@ -77,7 +77,7 @@ const tourData = {
             type: "food",
             image: "nanbin.jpg",
             distance: "25 km",
-            map: "南濱公園"
+            map: "https://www.google.com/maps/place/%E7%8E%89%E9%87%8C%E6%A9%8B%E9%A0%AD%E8%87%AD%E8%B1%86%E8%85%90-%E8%8A%B1%E8%93%AE%E5%BA%97/@23.9678722,121.6081029,17z/"
         },
         {
             time: "21:00",
@@ -118,7 +118,7 @@ const tourData = {
             type: "food",
             image: "fenglin_food.jpg",
             distance: "2 km",
-            map: "鳳林韭菜臭豆腐"
+            map: "https://www.google.com/maps/place/%E9%B3%B3%E6%9E%97+%E6%B8%B8%E7%BF%81+%E9%9F%AD%E8%8F%9C%E8%87%AD%E8%B1%86%E8%85%90/@23.743364,121.4476448,17z/"
         },
         {
             time: "13:30",

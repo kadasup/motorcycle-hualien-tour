@@ -55,7 +55,7 @@ function renderTimeline(day) {
                     ${item.guide}
                 </div>
                 <div class="card-actions">
-                    ${item.map ? `<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.map)}" target="_blank" class="action-link map-link">📍 導航</a>` : ''}
+                    ${item.map ? `<a href="${item.map.startsWith('http') ? item.map : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.map)}`}" target="_blank" class="action-link map-link">📍 導航</a>` : ''}
                 </div>
             </div>
         `;
